@@ -63,6 +63,34 @@ Bootstrap is a sleek, intuitive, and powerful front-end framework for faster and
 9. Go to your browser and refresh the projects page.
 10. From the projects root run `sudo chmod -R 755 ../laramin`
 
+### Commonly Used Folders and Files Structure
+```
+laramin/
+   ├── app/
+   │   ├── Http/
+   │   │   └── routes.php
+   ├── config/
+   │   ├── app.php
+   │   ├── database.php
+   │   └── view.php
+   ├──
+   │   ├──
+   │   │	├──
+   │   │   │   ├──
+   │   │   │   │   ├──
+   │   │   │   │   │   ├──
+   │   │   │   │   │   │   ├──
+   │   │   │   │   │   │   │   └──
+   │   │   │   │   │   │   └──
+   │   │   │   │   │   └──
+   │   │   │   │   └──
+   │   │   │   └──
+   │   │   └──
+   │   └──
+   ├──
+   └──
+```
+
 ## Other Very Usefull Information
 
 ### Vagrant Dev Environment
@@ -77,6 +105,6 @@ Bootstrap is a sleek, intuitive, and powerful front-end framework for faster and
 
 ## Access Vagrant SSH and MySQL
 |:Command        |Action      | 
-|:------------- |:------------- |:-------------|
+|------------- |:------------- |:-------------|
 | ```sudo ssh vagrant@127.0.0.1 -p 222``` | Access Vagrant VM via SSH. Password is ``` vagrant  ``` |
 | ```mysql -u homestead -ppassword``` | Access Vagrant VM MySQL. Password is ``` vagrant  ``` |
