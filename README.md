@@ -58,10 +58,10 @@ Bootstrap is a sleek, intuitive, and powerful front-end framework for faster and
 
 .working here.
 
-7. From the projects root run `php artisan migrate`
+~~7. From the projects root run `php artisan migrate`
 8. From the projects root run `sudo chmod -R 777 ../laramin`
 9. Go to your browser and refresh the projects page.
-10. From the projects root run `sudo chmod -R 755 ../laramin`
+10. From the projects root run `sudo chmod -R 755 ../laramin`~~
 
 ### Commonly Used Folders and Files Structure
 ```
