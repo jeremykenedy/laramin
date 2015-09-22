@@ -109,13 +109,20 @@ laramin/
 | ```sudo ssh vagrant@127.0.0.1 -p 222``` | Access Vagrant VM via SSH. Password is ``` vagrant  ``` |
 | ```mysql -u homestead -ppassword``` | Access Vagrant VM MySQL. Password is ``` vagrant  ``` |
 
-## Very Helpful Vagrant/Homestead Aliases
+## Very Helpful Aliases
 You can edit/or create your systems (MAC OS X) alias file with the follwing command:
 ```
 sudo vim ~/.bash_profile
 ```
 
-You can choose all or some of the following aliases to add to your `.bash_profile`:
+To update TERMINAL CLI to be able to use the the added aliases run the following command:
+```
+. ~/.bash_profile
+```
+
+## You can choose all or some of the following aliases to add to your `.bash_profile`:
+
+### Vagrant/Homestead Aliases
 ```
 alias machost='sudo vim /etc/hosts'
 alias edithost='sudo vim /etc/hosts'
@@ -129,14 +136,222 @@ alias updatecomposer='sudo composer self-update'
 alias rollbackcomposer='sudo composer self-update --rollback'
 ```
 
-To update TERMINAL CLI to be able to use the the added aliases run the following command:
+A helpful bashfile alias function to **start VAGRANT** instance:
 ```
-. ~/.bash_profile
+function laraup {
+  _pwd=$(pwd)
+  startVM(){
+    vagrant up --provision
+  }
+  echo "=============================================================================="
+  echo "****** STARTING LARAVEL VAGRANT INSTANCE "
+  echo "=============================================================================="
+  cd ~/Homestead/
+  if startVM ; then
+    echo "=============================================================================="
+    echo "****** SUCCESS - LARAVEL VAGRANT STARTED :)~"
+    echo "=============================================================================="
+  else
+    echo "=============================================================================="
+    echo "****** ERROR - LARAVEL VAGRANT DID NOT START :("
+    echo "=============================================================================="
+  fi
+  cd $_originalDir
+}
+```
+
+A helpful bashfile alias function to **shutdown/halt/stop VAGRANT** instance:
+```
+function laradown {
+  _pwd=$(pwd)
+  stopVM(){
+    vagrant halt
+  }
+  echo "=============================================================================="
+  echo "****** STOPPING LARAVEL VAGRANT INSTANCE "
+  echo "=============================================================================="
+  cd ~/Homestead/
+  if stopVM ; then
+    echo "=============================================================================="
+    echo "****** SUCCESS - LARAVEL VAGRANT SHUTDOWN :)~"
+    echo "=============================================================================="
+  else
+    echo "=============================================================================="
+    echo "****** ERROR - LARAVEL VAGRANT DID SHUTDOWN :("
+    echo "=============================================================================="
+  fi
+  cd $_originalDir
+}
+```
+
+A helpful bashfile alias function to **remove VAGRANT** instance:
+```
+function larakill {
+  _pwd=$(pwd)
+  killVM(){
+    vagrant destroy
+  }
+  echo "=============================================================================="
+  echo "****** DESTROYING LARAVEL VAGRANT INSTANCE "
+  echo "=============================================================================="
+  cd ~/Homestead/
+  if killVM ; then
+    echo "=============================================================================="
+    echo "****** SUCCESS - LARAVEL VAGRANT DESTROYING :)~"
+    echo "=============================================================================="
+  else
+    echo "=============================================================================="
+    echo "****** ERROR - LARAVEL VAGRANT WAS NOT DESTROYING :("
+    echo "=============================================================================="
+  fi
+  cd $_originalDir
+}
+```
+
+### General Very Helpful Aliases
+#### Cleanup
+A nice alias to **list all** the MAC and OSX filesystem booger:
+```
+alias cleanprint='
+find . -name "*.DS_Store" -print;
+find . -name "*.DS_Store" -print;
+find . -name "*._DS_Store" -print;
+find . -name "._.DS_Store" -print;
+find . -name ".DS_Store" -print;
+find . -name "Thumbs.db" -print;
+find . -name "._.*" -print;
+find . -name "._*" -print ;
+'
+```
+
+A nice alias to **delete all** the MAC and OSX filesystem booger:
+```
+alias cleanrm='
+find . -name "*.DS_Store" -delete;
+find . -name "*.DS_Store" -delete;
+find . -name "*._DS_Store" -delete;
+find . -name "._.DS_Store" -delete;
+find . -name ".DS_Store" -delete;
+find . -name "Thumbs.db" -delete;
+find . -name "._.*" -delete;
+find . -name "._*" -delete ;
+'
+```
+
+A nice alias to **list and delete all** the MAC and OSX filesystem booger:
+```
+alias cleanboth='
+find . -name "*.DS_Store" -print; 
+find . -name "*.DS_Store" -print; 
+find . -name "*._DS_Store" -print; 
+find . -name "._.DS_Store" -print; 
+find . -name ".DS_Store" -print; 
+find . -name "Thumbs.db" -print; 
+find . -name "._.*" -print; 
+find . -name "._*" -print ; 
+find . -name "*.DS_Store" -delete;
+find . -name "*.DS_Store" -delete;
+find . -name "*._DS_Store" -delete;
+find . -name "._.DS_Store" -delete;
+find . -name ".DS_Store" -delete;
+find . -name "Thumbs.db" -delete;
+find . -name "._.*" -delete;
+find . -name "._*" -delete ;
+'
+```
+#### Show MAC OS X files
+Alias to **show all hidden files** on MAC OS X filesystem:
+```
+alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+```
+
+Alias to **hide all hidden files** on MAC OS X filesystem:
+```
+alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 ```
 
 
 
+### GIT CLI Quick alias functions
+#### Quick GIT PUSH
+```
+function quickpush {
+	_currentBranch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+    sudo git add -A
+    sudo git commit -m "quick push"
+    sudo git push $_currentBranch
+}
+```
 
+#### Another flavor of Quick GIT PUSH
+```
+function push {
+	_currentBranch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+    sudo git add -A
+    sudo git commit -m "quick push"
+    sudo git push $_currentBranch
+}
+```
 
+#### Quick GIT PULL
+```
+function quickpull {
+	_currentBranch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+    sudo git pull $_currentBranch
+}
+```
 
+#### Another flavor of Quick GIT PULL
+```
+function pull {
+	_currentBranch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+    sudo git pull $_currentBranch
+}
+```
 
+### My keyboard hates me GIT helper aliases:
+```
+alias gut='git'
+alias got='git'
+alias car='cat'
+alias commut='commit'
+alias commmit='commit'
+alias comit='commit'
+alias commot='commit'
+```
+
+### Typing `clear` takes too many keystrokes alias helper:
+```
+alias cl='clear'
+```
+
+### Helpful quick filesystem `ls` alias helpers:
+```
+alias la='ls -la'
+alias ll='ls -la'
+```
+
+### **Alias** and **`.bash_profile management`** aliases:
+#### **Show** Aliases helpers:
+```
+alias listalias='cat ~/.bash_profile'
+alias aliaslist='cat ~/.bash_profile'
+alias list='cat ~/.bash_profile'
+alias text='cat ~/.bash_profile'
+alias aliasshow='cat ~/.bash_profile'
+```
+
+#### **Edit** Aliases helpers:
+```
+alias aliasedit='sudo vim ~/.bash_profile'
+alias editalias='sudo vim ~/.bash_profile'
+```
+
+#### **Restart/Enable** Aliases helpers:
+```
+alias aliasreset='. ~/.bash_profile'
+alias aliasr='. ~/.bash_profile'
+alias alr='. ~/.bash_profile'
+alias alsr='. ~/.bash_profile'
+alias aliasrestart='. ~/.bash_profile'
+```
