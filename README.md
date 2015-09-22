@@ -108,3 +108,35 @@ laramin/
 |------------- |:------------- |:-------------|
 | ```sudo ssh vagrant@127.0.0.1 -p 222``` | Access Vagrant VM via SSH. Password is ``` vagrant  ``` |
 | ```mysql -u homestead -ppassword``` | Access Vagrant VM MySQL. Password is ``` vagrant  ``` |
+
+## Very Helpful Vagrant/Homestead Aliases
+You can edit/or create your systems (MAC OS X) alias file with the follwing command:
+```
+sudo vim ~/.bash_profile
+```
+
+You can choose all or some of the following aliases to add to your `.bash_profile`:
+```
+alias machost='sudo vim /etc/hosts'
+alias edithost='sudo vim /etc/hosts'
+alias sshlara='sudo ssh vagrant@127.0.0.1 -p 2222'
+alias laraedit='vim ~/.homestead/Homestead.yaml '
+alias aliaslara='vim ~/.homestead/aliases'
+alias laraalias='vim ~/.homestead/aliases'
+alias sql='mysql -u homestead -psecret'
+alias larasql='mysql -u homestead -psecret'
+alias updatecomposer='sudo composer self-update'
+alias rollbackcomposer='sudo composer self-update --rollback'
+```
+
+To update TERMINAL CLI to be able to use the the added aliases run the following command:
+```
+. ~/.bash_profile
+```
+
+
+
+
+
+
+
